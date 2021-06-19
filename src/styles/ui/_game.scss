@@ -56,12 +56,12 @@
     background-color: #fff;
     box-shadow: inset 0 5px 0 rgba($color: #000000, $alpha: 0.1);
     position: relative;
-    z-index: 2;
+    z-index: 1;
 	}
 	&__svg {
     @include size(55%, 55%);
     position: relative;
-    z-index: 3;
+    z-index: 2;
 		&--rock {
 			@include size(45%, 45%);
 		}

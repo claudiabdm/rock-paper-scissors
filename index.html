@@ -52,7 +52,7 @@
 		</main>
 
 		<footer class="footer" aria-hidden="false">
-			<button class="footer__button" type="button">rules</button>
+			<button class="footer__button" type="button" id="modalButton">rules</button>
 		</footer>
 
 		<!-- MODAL -->
@@ -63,29 +63,34 @@
 			aria-labelledby="modalTitle"
 			aria-modal="true"
 			role="dialog"
+			id="rulesModal"
 		>
-			<h2 class="modal__title" id="modalTitle" tabindex="0">rules</h2>
-			<p class="sr-only" id="modalDescription">
-				This is a dialog that explains rock-paper-scissors game rules. Pressing the Modal Close
-				Button will take you back to the game.
-			</p>
-			<svg role="img" aria-labelledby="rulesTitle rulesDescription" class="modal__content">
-				<title id="rulesTitle">Rock Paper Scissors Game Rules</title>
-				<desc id="rulesDescription">
-					Rock beats Scissors, Scissors beats Paper and Paper beats Rock
-				</desc>
-				<use href="images/image-rules.svg" />
-			</svg>
-			<button
-				id="modalCloseButton"
-				title="Rules"
-				aria-label="Modal Close Button"
-				class="modal__close"
-			>
-				<svg class="modal__close-svg">
-					<use href="images/icon-close.svg" />
-				</svg>
-			</button>
+			<div class="modal__container">
+				<h2 class="modal__title" id="modalTitle" tabindex="0">rules</h2>
+				<p class="modal__sr-only" id="modalDescription">
+					This is a dialog that explains rock-paper-scissors game rules. Pressing the Modal Close
+					Button will take you back to the game.
+				</p>
+				<div class="modal__content">
+					<svg role="img" aria-labelledby="rulesTitle rulesDescription" class="modal__svg">
+						<title id="rulesTitle">Rock Paper Scissors Game Rules</title>
+						<desc id="rulesDescription">
+							Rock beats Scissors, Scissors beats Paper and Paper beats Rock
+						</desc>
+						<use href="images/image-rules.svg#rules" />
+					</svg>
+				</div>
+				<button
+					id="modalCloseButton"
+					title="Rules"
+					aria-label="Modal Close Button"
+					class="modal__close"
+				>
+					<svg class="modal__close">
+						<use href="images/icon-close.svg#close" />
+					</svg>
+				</button>
+			</div>
 		</div>
 		<!-- // MODAL -->
 	</body>
