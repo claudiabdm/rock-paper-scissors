@@ -1,0 +1,35 @@
+@use '../mixins/mixins' as *;
+
+$spacing-score: rem(10px); 
+$score-width: rem(81px);
+$score-height: rem(72.25px);
+$padding-score: rem(14px);
+
+:root {
+  --spacing-score: #{$spacing-score};
+  --score-width: #{$score-width};
+  --score-height: #{$score-height};
+  --padding-score: #{$padding-score};
+}
+
+.score {
+  @include flex(center, center, column);
+  @include size(var(--score-width), var(--score-height));  
+  padding: var(--padding-score);
+  background: #fff;
+  border-radius: rem(5px);
+  &__title {
+    color: var(--neutral-score);
+    font-size: rem(10px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: rem(1.5px);
+  }
+
+  &__number {
+    color: var(--neutral-dark);
+    font-size: rem(38px);
+    font-weight: 700;
+    line-height: 1;
+  }
+}

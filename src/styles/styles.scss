@@ -1,0 +1,14 @@
+// ---------------- //
+// GLOBAL           //
+// ---------------- //
+@use "./global/_reset";
+@use "./global/_color";
+@use "./global/_typography";
+@use "./global/_layout";
+
+// ---------------- //
+// UI               //
+// ---------------- //
+@use "./ui/_score";
+@use "./ui/_game";
+@use "./ui/_modal";

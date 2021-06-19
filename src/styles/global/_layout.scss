@@ -1,0 +1,86 @@
+@use '../mixins/mixins' as *;
+
+$logo-width: rem(50px * 1.63);
+$logo-height: rem(50px);
+$spacing-header:  0 31px 20px 31px;
+$spacing-logo: rem(23px) rem(19px) rem(19px);
+$spacing-score: rem(10px);
+$body-padding-top: rem(30px);
+
+:root {
+  --logo-width: #{$logo-width};
+  --logo-height: #{$logo-height};
+  --spacing-header: #{$spacing-header};
+  --spacing-logo: #{$spacing-logo};
+  --spacing-score: #{$spacing-score};
+  --body-padding-top: #{$body-padding-top};
+}
+html,
+body {
+  @include size(100%, 100%);
+  min-height: 100%;
+  font-size: var(--font-size-body);
+}
+
+body {
+  @include flex(stretch, flex-start, column);
+  color: #fff;
+  background: var(--background-gradient);
+  font-size: var(--font-size-body);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  padding-top: var(--body-padding-top);
+}
+
+.header {
+  @include size(auto, auto);
+  @include flex(center, space-between);
+  max-width: rem(705px);
+  border: rem(3px) solid var(--neutral-header);
+  border-radius: rem(6px);
+  margin: var(--spacing-header);
+
+  &__logo {
+    @include flex(center, flex-start);
+    @include size(var(--logo-width), var(--logo-height));
+    margin: var(--spacing-logo);
+  }
+
+  &__score {
+    margin: var(--spacing-score);
+  }
+}
+
+.main {
+  @include size(100%, auto);
+}
+
+.footer {
+  @include size(100%, 100%);
+  @include flex(center, center);
+  &__button {
+    border: rem(2px) solid var(--neutral-header);
+    border-radius: rem(10px);
+    padding: 13px 36px 11px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: rem(2px);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.attribution {
+  @include absolute(auto, auto, 5px, auto);
+  color: var(--primary-blue);
+  font-size: rem(12px);
+  font-weight: 400;
+  opacity: 0.5;
+  a {
+    color: var(--primary-blue);
+    &:hover {
+      color: var(--primary-red);
+    }
+  }
+}

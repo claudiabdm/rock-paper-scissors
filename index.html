@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite App</title>
+		<script defer type="module" src="/src/main.ts"></script>
+	</head>
+	<body>
+		<header class="header" aria-hidden="false">
+			<h1 class="header__title">
+				<svg class="header__logo" aria-labelledby="logoTitle logoDescription" role="img">
+					<title id="logoTitle">Rock Paper Scissors</title>
+					<desc id="logoDescription">Logo with the words Rock Paper Scissors</desc>
+					<use href="images/logo.svg#logo" />
+				</svg>
+			</h1>
+			<div class="header__score score">
+				<h2 class="score__title">score</h2>
+				<span class="score__number">12</span>
+			</div>
+		</header>
+
+		<main class="main" aria-hidden="false">
+			<ul class="game">
+				<li id="firstSlot" class="game__option game__option--paper">
+					<button type="button" aria-label="Choose paper" class="game__button">
+						<svg class="game__svg" role="img">
+							<use href="/images/icon-paper.svg#paper" />
+						</svg>
+					</button>
+				</li>
+				<li id="secondSlot" class="game__option game__option--scissors">
+					<button type="button" aria-label="Choose scissors" class="game__button">
+						<svg class="game__svg" role="img">
+							<use href="/images/icon-scissors.svg#scissors" />
+						</svg>
+					</button>
+				</li>
+				<li id="thirdSlot" class="game__option game__option--rock">
+					<button type="button" aria-label="Choose rock" class="game__button">
+						<svg class="game__svg game__svg--rock" role="img">
+							<use href="/images/icon-rock.svg#rock" />
+						</svg>
+					</button>
+				</li>
+				<!-- <svg class="game__triangle" aria-hidden="true">
+					<use href="/images/bg-triangle.svg#triangle"/>
+				</svg> -->
+			</ul>
+		</main>
+
+		<footer class="footer" aria-hidden="false">
+			<button class="footer__button" type="button">rules</button>
+		</footer>
+
+		<!-- MODAL -->
+		<div
+			class="modal"
+			aria-hidden="true"
+			aria-describedby="modalDescription"
+			aria-labelledby="modalTitle"
+			aria-modal="true"
+			role="dialog"
+		>
+			<h2 class="modal__title" id="modalTitle" tabindex="0">rules</h2>
+			<p class="sr-only" id="modalDescription">
+				This is a dialog that explains rock-paper-scissors game rules. Pressing the Modal Close
+				Button will take you back to the game.
+			</p>
+			<svg role="img" aria-labelledby="rulesTitle rulesDescription" class="modal__content">
+				<title id="rulesTitle">Rock Paper Scissors Game Rules</title>
+				<desc id="rulesDescription">
+					Rock beats Scissors, Scissors beats Paper and Paper beats Rock
+				</desc>
+				<use href="images/image-rules.svg" />
+			</svg>
+			<button
+				id="modalCloseButton"
+				title="Rules"
+				aria-label="Modal Close Button"
+				class="modal__close"
+			>
+				<svg class="modal__close-svg">
+					<use href="images/icon-close.svg" />
+				</svg>
+			</button>
+		</div>
+		<!-- // MODAL -->
+	</body>
 </html>
