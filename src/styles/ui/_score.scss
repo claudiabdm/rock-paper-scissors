@@ -1,15 +1,28 @@
 @use '../mixins/mixins' as *;
 
-$spacing-score: rem(10px); 
 $score-width: rem(81px);
 $score-height: rem(72.25px);
 $padding-score: rem(14px);
+$font-title-size: rem(10px);
+$font-number-size: rem(38px);
 
 :root {
-  --spacing-score: #{$spacing-score};
   --score-width: #{$score-width};
   --score-height: #{$score-height};
   --padding-score: #{$padding-score};
+  --score-title-font-size: #{$font-title-size};
+  --score-number-font-size: #{$font-number-size};
+  --score-border-radius: #{rem(5px)};
+}
+
+@media screen and (min-width: 1366px) {
+  :root {
+    --score-width: calc(#{$score-width} * 1.85);
+    --score-height: calc(#{$score-height} * 1.6);
+    --score-title-font-size: calc(#{$font-title-size} * 1.7);
+    --score-number-font-size: calc(#{$font-number-size} * 1.7);
+    --score-border-radius: #{rem(10px)};
+  }
 }
 
 .score {
@@ -17,18 +30,18 @@ $padding-score: rem(14px);
   @include size(var(--score-width), var(--score-height));  
   padding: var(--padding-score);
   background: #fff;
-  border-radius: rem(5px);
+  border-radius: var(--score-border-radius);
   &__title {
     color: var(--neutral-score);
-    font-size: rem(10px);
+    font-size: var(--score-title-font-size);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: rem(1.5px);
   }
 
   &__number {
-    color: var(--neutral-dark);
-    font-size: rem(38px);
+    color: var(--neutral-header);
+    font-size: var(--score-number-font-size);
     font-weight: 700;
     line-height: 1;
   }
