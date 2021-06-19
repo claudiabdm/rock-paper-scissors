@@ -1,67 +1,107 @@
 @use '../mixins/mixins' as *;
 
+:root {
+	--border-radius: 0;
+}
+
+@media screen and (min-width: 414px) {
+	:root {
+		--border-radius: #{rem(10px)};
+	}
+}
+
 .modal {
-  @include fixed(0, 0, 0, 0);
-  opacity: 0;
-  visibility: hidden;
-  z-index: 3;
-  transition: opacity 0.15s, visibility 0.15s;
-  
-  &--open {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  &__container {
-    @include flex(center, space-between, column);
-    @include size(100%, 100%);
-    padding: 92px 0 65px;
-    color: var(--neutral-dark);
-    background-color: #fff;
-  }
+	@include fixed(0, 0, 0, 0);
+	@include flex(center, center);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 3;
+	transition: opacity 0.15s, visibility 0.15s, background-color 0.15s;
+  background-color: rgba($color: #000000, $alpha: 0.5);
 
-  &__title {
-    font-size: rem(32px);
-    text-transform: uppercase;
-  }
+	&--open {
+		visibility: visible;
+		opacity: 1;
+	}
 
-  &__content {
-    @include size(100%, 100%);
-    @include flex(center, center, column);
-    padding: 0 35px 40px;
-  }
+	&__container {
+		@include flex(center, space-between, column);
+		@include size(100%, 100%);
+		border-radius: var(--border-radius);
+		padding: 92px 0 65px;
+		color: var(--neutral-dark);
+		background-color: #fff;
 
-  &__svg {
-    @include size(100%, 100%);
-    max-width: rem(304px);
-    max-height: rem(270px);
-  }
+		@media screen and (min-width: 414px) {
+			display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 0.25fr 0.75fr;
+			grid-template-areas:
+				"title close"
+				"main main";
+      max-width: rem(395px);
+      max-height: rem(412px);
+      padding: 0;
+      justify-items: center;
+		}
+	}
 
-  &__close {
-    @include size(rem(20px), rem(20px));
-  }
+	&__title {
+		font-size: rem(32px);
+		text-transform: uppercase;
+    @media screen and (min-width: 414px) {
+      grid-area: title;
+      justify-self: flex-start;
+      margin: 0 0 10px 29px;
+		}
+	}
 
-  &__sr-only {
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
-  }
+	&__content {
+		@include size(100%, 100%);
+		@include flex(center, center, column);
+		margin: 0 35px 45px;
+    @media screen and (min-width: 414px) {
+      grid-area: main;
+			margin: 0 0 25px 0;
+		}
+	}
+
+	&__svg {
+		@include size(100%, 100%);
+		max-width: rem(304px);
+		max-height: rem(270px);
+	}
+
+	&__close {
+		@include size(rem(20px), rem(20px));
+    @media screen and (min-width: 395px) {
+      justify-self: flex-end;
+      grid-area: close;
+      margin: 0 29px 10px 0;
+		}
+	}
+
+	&__sr-only {
+		position: absolute;
+		left: -10000px;
+		top: auto;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
 }
 
 @keyframes modalSlideIn {
-  0% {
-    transform: translate3d(100%, 0, 0);
-    opacity: 0;
-    visibility: hidden;
-  }
-  25% {
-    visibility: visible;
-    opacity: 1;
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+	0% {
+		transform: translate3d(100%, 0, 0);
+		opacity: 0;
+		visibility: hidden;
+	}
+	25% {
+		visibility: visible;
+		opacity: 1;
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
 }
