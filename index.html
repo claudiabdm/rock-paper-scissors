@@ -24,25 +24,31 @@
 
 		<main class="main" aria-hidden="false">
 			<ul class="game">
-				<li id="firstSlot" class="game__option game__option--paper">
-					<button type="button" aria-label="Choose paper" class="game__button">
-						<svg class="game__svg" role="img">
-							<use href="/images/icon-paper.svg#paper" />
-						</svg>
+				<li class="game__elem">
+					<button type="button" aria-label="Choose paper" class="game__button game__button--paper">
+						<div class="game__svg-container">
+							<svg class="game__svg" role="img">
+								<use href="/images/icon-paper.svg#paper" />
+							</svg>
+						</div>
 					</button>
 				</li>
-				<li id="secondSlot" class="game__option game__option--scissors">
-					<button type="button" aria-label="Choose scissors" class="game__button">
-						<svg class="game__svg" role="img">
-							<use href="/images/icon-scissors.svg#scissors" />
-						</svg>
+				<li class="game__elem">
+					<button type="button" aria-label="Choose scissors" class="game__button game__button--scissors">
+						<div class="game__svg-container">
+							<svg class="game__svg" role="img">
+								<use href="/images/icon-scissors.svg#scissors" />
+							</svg>
+						</div>
 					</button>
 				</li>
-				<li id="thirdSlot" class="game__option game__option--rock">
-					<button type="button" aria-label="Choose rock" class="game__button">
-						<svg class="game__svg game__svg--rock" role="img">
-							<use href="/images/icon-rock.svg#rock" />
-						</svg>
+				<li class="game__elem game__elem--last">
+					<button type="button" aria-label="Choose rock" class="game__button game__button--rock">
+						<div class="game__svg-container">
+							<svg class="game__svg" role="img">
+								<use href="/images/icon-rock.svg#rock" />
+							</svg>
+						</div>
 					</button>
 				</li>
 				<!-- <svg class="game__triangle" aria-hidden="true">

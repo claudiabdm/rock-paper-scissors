@@ -22,8 +22,16 @@
 		row-gap: 10px;
     background: url('/images/bg-triangle.svg') no-repeat 50% 65% / 60%;
 	}
+
+	&__elem {
+
+		&--last {
+			grid-column: 1 / span 2;
+			grid-row: 2;
+		}
+	}
   
-	&__option {
+	&__button {
     @include size(rem(130px));
 		@include flex(center, center);
 		position: relative;
@@ -31,7 +39,7 @@
 		max-width: rem(203px);
 		border-radius: 50%;
     font-size: 5px;
-    
+
 		@media screen and (min-width: 1366px) {
 			@include size(rem(200px), rem(200px));
       font-size: 7px;
@@ -47,7 +55,6 @@
 		}
 
 		&--paper {
-			grid-column: 1;
 			&::before {
 				background: var(--primary-paper);
 				box-shadow: 0 1em 0 hsla(230, 66%, 45%);
@@ -57,7 +64,6 @@
 			}
 		}
 		&--scissors {
-			grid-column: 2;
 			&::before {
 				background: var(--primary-scissor);
 				box-shadow: 0 1em 0px hsla(28, 75%, 45%);
@@ -67,8 +73,6 @@
 			}
 		}
 		&--rock {
-			grid-column: 1 / span 2;
-			grid-row: 2;
 			&::before {
 				background: var(--primary-rock);
 				box-shadow: 0 1em 0px hsla(349, 77%, 35%);
@@ -78,7 +82,7 @@
 			}
 		}
 	}
-	&__button {
+	&__svg-container {
 		@include size(78%, 78%);
 		@include flex(center, center);
 		border-radius: 50%;
@@ -86,6 +90,7 @@
 		box-shadow: inset 0 5px 0 hsla(217, 16%, 45%, 25%);
 		position: relative;
 		z-index: 1;
+		pointer-events: none;
     @media screen and (min-width: 1366px) {
       box-shadow: inset 0 7px 0 hsla(217, 16%, 45%, 25%);
     }
