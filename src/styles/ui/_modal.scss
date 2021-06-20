@@ -79,6 +79,9 @@
       grid-area: close;
       margin: 0 29px 10px 0;
 		}
+		&:hover {
+			cursor: pointer;
+		}
 	}
 
 	&__sr-only {
