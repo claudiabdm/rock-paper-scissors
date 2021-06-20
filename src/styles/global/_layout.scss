@@ -68,6 +68,10 @@ body {
 
 .main {
   @include size(100%, auto);
+  @include flex(center, center);
+  @media screen and (min-width: 1366px) {
+    height: 100%;
+  }
 }
 
 .footer {
@@ -75,8 +79,9 @@ body {
   @include flex(center, center);
 
   @media screen and (min-width: 1366px) {
+    height: auto;
     justify-content: flex-end;
-    margin: 0 62px 5px 0;
+    margin: 0 62px 30px 0;
   }
   &__button {
     border: rem(2px) solid var(--neutral-header);
