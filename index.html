@@ -23,9 +23,9 @@
 		</header>
 
 		<main class="main" aria-hidden="false">
-			<ul class="game">
+			<!-- <ul class="game">
 				<li class="game__elem">
-					<button type="button" aria-label="Choose paper" class="game__button game__button--paper">
+					<button type="button" id="paper" aria-label="Choose paper" class="game__option game__option--paper">
 						<div class="game__svg-container">
 							<svg class="game__svg" role="img">
 								<use href="/images/icon-paper.svg#paper" />
@@ -34,7 +34,7 @@
 					</button>
 				</li>
 				<li class="game__elem">
-					<button type="button" aria-label="Choose scissors" class="game__button game__button--scissors">
+					<button type="button" id="scissors" aria-label="Choose scissors" class="game__option game__option--scissors">
 						<div class="game__svg-container">
 							<svg class="game__svg" role="img">
 								<use href="/images/icon-scissors.svg#scissors" />
@@ -43,7 +43,7 @@
 					</button>
 				</li>
 				<li class="game__elem game__elem--last">
-					<button type="button" aria-label="Choose rock" class="game__button game__button--rock">
+					<button type="button" id="rock" aria-label="Choose rock" class="game__option game__option--rock">
 						<div class="game__svg-container">
 							<svg class="game__svg" role="img">
 								<use href="/images/icon-rock.svg#rock" />
@@ -51,9 +51,34 @@
 						</div>
 					</button>
 				</li>
-				<!-- <svg class="game__triangle" aria-hidden="true">
-					<use href="/images/bg-triangle.svg#triangle"/>
-				</svg> -->
+			</ul> -->
+			<ul class="game game--results">
+				<li class="game__elem game__elem--first">
+					<div class="game__option game__option--paper">
+						<div class="game__svg-container">
+							<svg class="game__svg" role="img">
+								<use href="/images/icon-paper.svg#paper" />
+							</svg>
+						</div>
+					</div>
+					<span class="game__text game__text--picked">You picked</span>
+				</li>
+				<li class="game__elem game__elem--second">
+					<div class="game__option game__option--scissors game__option--win">
+						<div class="game__svg-container">
+							<svg class="game__svg" role="img">
+								<use href="/images/icon-scissors.svg#scissors" />
+							</svg>
+						</div>
+					</div>
+					<span class="game__text game__text--picked">The house picked</span>
+				</li>
+				<li class="game__elem game__elem--last game__elem--play">
+					<span id="result" class="game__text game__text--lg">you lose</span>
+					<button type="button" id="playAgain" class="game__button">
+						<span> Play again </span>
+					</button>
+				</li>
 			</ul>
 		</main>
 
