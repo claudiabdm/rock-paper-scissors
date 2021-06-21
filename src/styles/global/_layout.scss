@@ -2,10 +2,9 @@
 
 $logo-width: rem(50px * 1.63);
 $logo-height: rem(50px);
-$header-spacing:  0 auto 20px auto;
+$header-spacing:  auto auto 21px auto;
 $logo-spacing: rem(23px) rem(19px) rem(19px);
 $spacing-score: rem(10px);
-$body-padding-top: rem(30px);
 
 :root {
   --header-spacing: #{$header-spacing};
@@ -15,7 +14,6 @@ $body-padding-top: rem(30px);
   --logo-height: #{$logo-height};
   --logo-spacing: #{rem(23px) rem(19px) rem(19px)};
   --spacing-score: #{$spacing-score};
-  --body-padding-top: #{$body-padding-top};
 }
 
 @media screen and (min-width: 1366px) {
@@ -26,7 +24,6 @@ $body-padding-top: rem(30px);
     --logo-height: calc(#{$logo-height} * 2);
     --logo-spacing: #{rem(26px) rem(27px) rem(19px)};
     --spacing-score: #{rem(16px) rem(25px)};
-    --body-padding-top: calc(#{$body-padding-top} * 1.5);
     --background-gradient: radial-gradient(
       circle at 50% 0%,
       hsl(214, 47%, 23%) 10%,
@@ -43,13 +40,22 @@ body {
 }
 
 body {
-  @include flex(center, flex-start, column);
   color: #fff;
   background: var(--background-gradient);
   font-size: var(--font-size-body);
   font-family: var(--font-family);
   font-weight: var(--font-weight);
-  padding-top: var(--body-padding-top);
+}
+
+.layout {
+  @include size(100%, 100%);
+  display: grid;
+  grid-template-rows: 0.32fr 1fr 0.36fr;
+  justify-items: center;
+  align-items: center;
+  @media screen and (min-width: 1366px) {
+    grid-template-rows: 0.46fr 1fr 0.16fr;
+  }
 }
 
 .header {
@@ -72,11 +78,8 @@ body {
 }
 
 .main {
-  @include size(100%, auto);
+  @include size(100%, 100%);
   @include flex(center, center);
-  @media screen and (min-width: 1366px) {
-    height: 100%;
-  }
 }
 
 .footer {

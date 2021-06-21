@@ -5,7 +5,7 @@
 	height: 100%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, 150px);
+	grid-template-rows: repeat(2, 1fr);
 	justify-items: center;
 	align-items: center;
 	align-content: center;
@@ -14,24 +14,22 @@
 	background: url('/images/bg-triangle.svg') no-repeat 50% 50% / 50%;
 
 	@media screen and (min-width: 1366px) {
-		grid-template-rows: repeat(2, rem(210px));
 		padding: 0;
-		align-items: flex-start;
-		padding-top: 40px;
-		column-gap: 60px;
-		row-gap: 10px;
+		align-items: flex-end;
+		column-gap: 75px;
 		background: url('/images/bg-triangle.svg') no-repeat 50% 65% / 60%;
 	}
 
 	&--results {
-		// grid-template-rows: repeat(2, rem(210px));
 		background: none;
 		max-width: 1000px;
+		padding: 75px 5px 0;
 
 		@media screen and (min-width: 1366px) {
 			grid-template-columns: repeat(3, 1fr);
 			gap: 0;
 			justify-items: flex-start;
+			padding-top: 50px;
 			padding-right: 26px;
 			padding-left: 4px;
 			background: none;
@@ -47,16 +45,21 @@
 				flex-direction: column-reverse;
 				justify-content: space-between;
 			}
-
+			&--picking {
+				grid-column: 3;
+			}
+			&--2 {
+				grid-column: auto;
+			}
 			&--play {
 				justify-content: center;
-				margin-top: 90px;
+				// margin-top: 90px;
 				@media screen and (min-width: 1366px) {
 					grid-column: 2;
 					grid-row: 1 / span 2;
 					flex-direction: column;
 					max-width: unset;
-					margin-top: 38px;
+					margin-top: 32px;
 					margin-left: 10px;
 				}
 			}
@@ -72,16 +75,22 @@
 	}
 
 	&__elem {
-		&--last {
+		&--1 {
+			grid-column: 1;
+		}
+		&--2 {
+			grid-column: 2;
+		}
+		&--3 {
 			grid-column: 1 / span 2;
 			grid-row: 2;
 		}
 
 		&--play {
 			justify-content: center;
-			grid-row: 2;
+			grid-column: 1 / span 3;
+			grid-row: 2 / span 3;
 		}
-
 	}
 
 	&__option {
@@ -222,4 +231,8 @@
 			font-size: rem(57px);
 		}
 	}
+}
+
+button.game__option:hover {
+	cursor: pointer;
 }
