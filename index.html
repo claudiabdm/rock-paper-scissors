@@ -8,83 +8,31 @@
 		<script defer type="module" src="/src/main.ts"></script>
 	</head>
 	<body>
-		<header class="header" aria-hidden="false">
-			<h1 class="header__title">
-				<svg class="header__logo" aria-labelledby="logoTitle logoDescription" role="img">
-					<title id="logoTitle">Rock Paper Scissors</title>
-					<desc id="logoDescription">Logo with the words Rock Paper Scissors</desc>
-					<use href="images/logo.svg#logo" />
-				</svg>
-			</h1>
-			<div class="header__score score">
-				<h2 class="score__title">score</h2>
-				<span class="score__number">12</span>
-			</div>
-		</header>
-
-		<main class="main" aria-hidden="false">
-			<!-- <ul class="game">
-				<li class="game__elem">
-					<button type="button" id="paper" aria-label="Choose paper" class="game__option game__option--paper">
-						<div class="game__svg-container">
-							<svg class="game__svg" role="img">
-								<use href="/images/icon-paper.svg#paper" />
-							</svg>
-						</div>
-					</button>
-				</li>
-				<li class="game__elem">
-					<button type="button" id="scissors" aria-label="Choose scissors" class="game__option game__option--scissors">
-						<div class="game__svg-container">
-							<svg class="game__svg" role="img">
-								<use href="/images/icon-scissors.svg#scissors" />
-							</svg>
-						</div>
-					</button>
-				</li>
-				<li class="game__elem game__elem--last">
-					<button type="button" id="rock" aria-label="Choose rock" class="game__option game__option--rock">
-						<div class="game__svg-container">
-							<svg class="game__svg" role="img">
-								<use href="/images/icon-rock.svg#rock" />
-							</svg>
-						</div>
-					</button>
-				</li>
-			</ul> -->
-			<ul class="game game--results">
-				<li class="game__elem game__elem--first">
-					<div class="game__option game__option--paper">
-						<div class="game__svg-container">
-							<svg class="game__svg" role="img">
-								<use href="/images/icon-paper.svg#paper" />
-							</svg>
-						</div>
-					</div>
-					<span class="game__text game__text--picked">You picked</span>
-				</li>
-				<li class="game__elem game__elem--second">
-					<div class="game__option game__option--scissors game__option--win">
-						<div class="game__svg-container">
-							<svg class="game__svg" role="img">
-								<use href="/images/icon-scissors.svg#scissors" />
-							</svg>
-						</div>
-					</div>
-					<span class="game__text game__text--picked">The house picked</span>
-				</li>
-				<li class="game__elem game__elem--last game__elem--play">
-					<span id="result" class="game__text game__text--lg">you lose</span>
-					<button type="button" id="playAgain" class="game__button">
-						<span> Play again </span>
-					</button>
-				</li>
-			</ul>
-		</main>
-
-		<footer class="footer" aria-hidden="false">
-			<button class="footer__button" type="button" id="modalButton">rules</button>
-		</footer>
+		<section class="layout">
+			<header class="header" aria-hidden="false">
+				<h1 class="header__title">
+					<svg class="header__logo" aria-labelledby="logoTitle logoDescription" role="img">
+						<title id="logoTitle">Rock Paper Scissors</title>
+						<desc id="logoDescription">Logo with the words Rock Paper Scissors</desc>
+						<use href="images/logo.svg#logo" />
+					</svg>
+				</h1>
+				<div class="header__score score">
+					<h2 class="score__title">score</h2>
+					<span class="score__number">12</span>
+				</div>
+			</header>
+			<main class="main" aria-hidden="false">
+				<ul class="game">
+					<!-- GAME	-->
+				</ul>
+			</main>
+	
+			<footer class="footer" aria-hidden="false">
+				<button class="footer__button" type="button" id="modalButton">rules</button>
+			</footer>
+	
+		</section>
 
 		<!-- MODAL -->
 		<div
