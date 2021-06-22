@@ -58,6 +58,9 @@ body {
   @media screen and (min-width: 1024px) {
     grid-template-rows: 0.46fr 1fr 0.16fr;
   }
+  @media screen and (min-width: 1366px) {
+    grid-template-rows: 0.54fr 1fr 0.16fr;
+  }
 }
 
 .header {
