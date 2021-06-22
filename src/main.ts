@@ -1,4 +1,5 @@
 import './styles/styles.scss';
+import { initModal } from './modal';
 
 // ------------ //
 // VARIABLES    //
@@ -7,6 +8,9 @@ const options = ['paper', 'scissors', 'rock'];
 const gameElem = document.querySelector('.game') as HTMLElement;
 let score = 0;
 
+type PickOption = 'rock' | 'paper' | 'scissors';
+type Result = 'you won' | 'you lose' | 'draw';
+
 // ------------ //
 // LOAD         //
 // ------------ //
@@ -14,8 +18,8 @@ document.addEventListener(
 	'DOMContentLoaded',
 	() => {
 		if (gameElem) {
-			initModal();
 			initGame(gameElem);
+			initModal();
 		}
 	},
 	false
@@ -209,42 +213,3 @@ function createEmptyOptionElem(): HTMLElement {
 	li.appendChild(optionContainer);
 	return li;
 }
-
-
-// ------------ //
-// MODAL        //
-// ------------ //
-function initModal(): void {
-	const main = document.querySelector('.main');
-	const header = document.querySelector('.header');
-	const modalToggleButton = document.getElementById('modalButton');
-	const modal = document.getElementById('rulesModal');
-	const modalCloseButton = document.getElementById('modalCloseButton');
-
-	modalToggleButton?.addEventListener('click', modalButtonClickHandler, false);
-	modalCloseButton?.addEventListener('click', modalButtonClickHandler, false);
-
-	function modalButtonClickHandler(_event: Event) {
-		const isOpen = Boolean(modal?.classList.contains('modal--open'));
-		toggleModal(isOpen);
-	}
-
-	function toggleModal(isOpen: boolean) {
-		if (isOpen) {
-			modal?.setAttribute('aria-hidden', 'true');
-			modal?.classList.remove('modal--open');
-
-			main?.setAttribute('aria-hidden', 'false');
-			header?.setAttribute('aria-hidden', 'false');
-		} else {
-			modal?.setAttribute('aria-hidden', 'false');
-			modal?.classList.add('modal--open');
-
-			main?.setAttribute('aria-hidden', 'true');
-			header?.setAttribute('aria-hidden', 'true');
-		}
-	}
-}
-
-type PickOption = 'rock' | 'paper' | 'scissors';
-type Result = 'you won' | 'you lose' | 'draw';
