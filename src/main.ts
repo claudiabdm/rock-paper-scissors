@@ -194,6 +194,7 @@ function createOptionElem(optionId: string, position: number, isButton: boolean)
 	*/
 	const img = document.createElement('img');
 	img.setAttribute('src', images[`../images/icons/icon-${optionId}.svg`].default + `#${optionId}`);
+	img.setAttribute('alt', `${optionId} icon`);
 	img.classList.add('game__svg', `game__svg--${optionId}`);
 	svgContainer.appendChild(img);
 	optionContainer.appendChild(svgContainer);
