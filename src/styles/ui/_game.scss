@@ -113,7 +113,8 @@ $result-won-delay: ($result-delay * 2);
 				z-index: -1;
 				opacity: 0.4;
 				animation: fadeIn 1s $result-won-delay cubic-bezier(0.175, 0.885, 0.32, 1.275) both,
-					loadingSmaller 1s $result-won-delay cubic-bezier(0.33, 1, 0.68, 1) infinite alternate-reverse;
+					loadingSmaller 1s $result-won-delay cubic-bezier(0.33, 1, 0.68, 1) infinite
+						alternate-reverse;
 				@media screen and (min-width: 1024px) {
 					@include size(250%, 250%);
 				}
@@ -292,7 +293,7 @@ button.game__option:hover {
 @keyframes fadeIn {
 	from {
 		opacity: 0;
-	} 
+	}
 	to {
 		opacity: 1;
 	}
