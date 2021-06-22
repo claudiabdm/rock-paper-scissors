@@ -4,7 +4,8 @@ import './styles/styles.scss';
 // VARIABLES    //
 // ------------ //
 const options = ['paper', 'scissors', 'rock'];
-const gameElem = document.querySelector('.game');
+const gameElem = document.querySelector('.game') as HTMLElement;
+let score = 0;
 
 // ------------ //
 // LOAD         //
@@ -23,7 +24,7 @@ document.addEventListener(
 // ------------ //
 // GAME         //
 // ------------ //
-function initGame(game: Element) {
+function initGame(game: HTMLElement) {
 	creatStartGameView(game);
 	game.addEventListener('click', selectOptionClickHandler, false);
 }
@@ -32,7 +33,7 @@ function initGame(game: Element) {
 // --------------- //
 // START GAME VIEW //
 // --------------- //
-function creatStartGameView(game: Element): void {
+function creatStartGameView(game: HTMLElement): void {
 	clearGameOptions(game);
 	options.forEach((option, idx) => {
 		game.appendChild(createOptionElem(option, idx + 1, true));
@@ -42,7 +43,7 @@ function creatStartGameView(game: Element): void {
 // --------------- //
 // WAITING VIEW    //
 // --------------- //
-function createWaitingView(optionId: string, game: Element): void {
+function createWaitingView(optionId: string, game: HTMLElement): void {
 	clearGameOptions(game);
 	game.classList.add('game--results');
 	const playerOption = createOptionElem(optionId, 1, false);
@@ -60,52 +61,55 @@ function createWaitingView(optionId: string, game: Element): void {
 // --------------- //
 // RESULT VIEW    //
 // --------------- //
-function createResultView(playerOption: Element, houseOption: Element, game: Element): void {
-	const playerPick = playerOption.firstElementChild?.id || '';
-	const housePick = houseOption.firstElementChild?.id || '';
-	const result = hasWon(playerPick, housePick);
-	playerOption.appendChild(createTextResultElem('you picked'));
-	houseOption.appendChild(createTextResultElem('the house picked'));
+function createResultView(playerOption: HTMLElement, houseOption: HTMLElement, game: HTMLElement): void {
+	const playerPick = playerOption.firstElementChild?.id as PickOption;
+	const housePick = houseOption.firstElementChild?.id as PickOption;
+	const result = hasWon(playerPick, housePick) as Result;
+	playerOption.appendChild(createTextElem('you picked'));
+	houseOption.appendChild(createTextElem('the house picked'));
 	if (result == 'you won') {
 		playerOption.firstElementChild?.classList.add('game__option--win')
-	} else {
+	} else if (result !== 'draw') {
 		houseOption.firstElementChild?.classList.add('game__option--win')
 	}
 	const resultElem = createResultElem(result, game);
 	game.appendChild(resultElem);
+	updateScoreElem(result);
 }
 
-function createTextResultElem(text: string) {
+function createTextElem(text: string): HTMLElement {
 	const textElem = document.createElement('span');
 	textElem.classList.add('game__text', 'game__text--picked');
 	textElem.textContent = text;
 	return textElem;
 }
 
-function createResultElem(result: string, game: Element): HTMLElement{
+function createResultElem(result: Result, game: HTMLElement): HTMLElement{
 	const li = document.createElement('li');
 	li.classList.add('game__elem', 'game__elem--3', 'game__elem--play');
 	const text = document.createElement('span');
 	text.classList.add('game__text', 'game__text--lg');
 	text.textContent = result;
 	const button = document.createElement('button');
+	const innerText = document.createElement('span');
 	button.classList.add('game__button');
 	button.setAttribute('type', 'button');
 	button.setAttribute('id', 'playAgain');
-	button.textContent = 'play again';
+	innerText.textContent = 'play again';
 	button.addEventListener('click', initGame.bind(null, game), { once: true, capture: false });
+	button.appendChild(innerText);
 	li.appendChild(text);
 	li.appendChild(button);
 	return li;
 }
 
-function hasWon(playerPick: string, housePick: string): string {
+function hasWon(playerPick: PickOption, housePick: PickOption): string {
 	if (playerPick === 'rock') {
 		switch (housePick) {
 			case 'scissors':
 				return 'you won';
 			case 'paper':
-			return 'you lose';
+				return 'you lose';
 		}
 	}
 	if (playerPick === 'paper') {
@@ -113,7 +117,7 @@ function hasWon(playerPick: string, housePick: string): string {
 			case 'scissors':
 				return 'you lose';
 			case 'rock':
-			return 'you won';
+				return 'you won';
 		}
 	}
 	if (playerPick === 'scissors') {
@@ -127,17 +131,29 @@ function hasWon(playerPick: string, housePick: string): string {
 	return 'draw';
 }
 
+function updateScoreElem(result: Result): void {
+	const scoreElem = document.querySelector('.score__number') as HTMLElement;
+	scoreElem.classList.remove('score__number--changing');
+	if (result === 'you won') {
+		score++;
+	} else {
+		score = score - 1 < 0 ? 0 : score - 1;
+	}
+	scoreElem.textContent = String(score);
+	scoreElem.classList.add('score__number--changing');
+}
+
 // ------------ //
 // OPTIONS      //
 // ------------ //
-function clearGameOptions(game: Element): void {
+function clearGameOptions(game: HTMLElement): void {
 	game.classList.remove('game--results');
 	while (game.firstChild) {
 		game.removeChild(game.lastChild as ChildNode);
 	}
 }
 
-function selectOptionClickHandler(event: Event) {
+function selectOptionClickHandler(event: Event): void {
 	const target = event.target as HTMLElement;
 	if (gameElem && options.includes(target.id) && target.tagName == 'BUTTON') {
 		createWaitingView(target.id, gameElem);
@@ -229,3 +245,6 @@ function initModal(): void {
 		}
 	}
 }
+
+type PickOption = 'rock' | 'paper' | 'scissors';
+type Result = 'you won' | 'you lose' | 'draw';
