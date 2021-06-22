@@ -2,7 +2,7 @@
 
 $logo-width: rem(50px * 1.63);
 $logo-height: rem(50px);
-$header-spacing:  auto auto 21px auto;
+$header-spacing: 25px auto 21px auto;
 $logo-spacing: rem(23px) rem(19px) rem(19px);
 $spacing-score: rem(10px);
 
@@ -16,8 +16,9 @@ $spacing-score: rem(10px);
   --spacing-score: #{$spacing-score};
 }
 
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1024px) {
   :root {
+    --header-spacing:  46px auto 21px auto;
     --header-max-width: #{rem(705px)};
     --header-border-radius: #{rem(17px)};
     --logo-width: calc(#{$logo-width} * 2);
@@ -53,7 +54,8 @@ body {
   grid-template-rows: 0.32fr 1fr 0.36fr;
   justify-items: center;
   align-items: center;
-  @media screen and (min-width: 1366px) {
+  position: relative;
+  @media screen and (min-width: 1024px) {
     grid-template-rows: 0.46fr 1fr 0.16fr;
   }
 }
@@ -64,7 +66,7 @@ body {
   max-width: var(--header-max-width);
   border: rem(3px) solid var(--neutral-header);
   border-radius: var(--header-border-radius);
-  margin: var(--header-spacing);
+  z-index: 1;
 
   &__logo {
     @include flex(center, flex-start);
@@ -86,7 +88,7 @@ body {
   @include size(100%, 100%);
   @include flex(center, center);
 
-  @media screen and (min-width: 1366px) {
+  @media screen and (min-width: 1024px) {
     height: auto;
     justify-content: flex-end;
     margin: 0 62px 30px 0;
