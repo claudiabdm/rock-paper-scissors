@@ -1,6 +1,6 @@
 import './styles/styles.scss';
 import { initModal } from './modal';
-
+const images = import.meta.globEager('../images/icons/**.svg');
 // ------------ //
 // VARIABLES    //
 // ------------ //
@@ -193,7 +193,7 @@ function createOptionElem(optionId: string, position: number, isButton: boolean)
 
 	*/
 	const img = document.createElement('img');
-	img.setAttribute('src', `/images/icon-${optionId}.svg#${optionId}`);
+	img.setAttribute('src', images[`../images/icons/icon-${optionId}.svg`].default + `#${optionId}`);
 	img.classList.add('game__svg', `game__svg--${optionId}`);
 	svgContainer.appendChild(img);
 	optionContainer.appendChild(svgContainer);
