@@ -15,7 +15,7 @@ $font-number-size: rem(38px);
   --score-border-radius: #{rem(5px)};
 }
 
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1024px) {
   :root {
     --score-width: calc(#{$score-width} * 1.85);
     --score-height: calc(#{$score-height} * 1.6);

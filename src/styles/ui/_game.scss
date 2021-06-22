@@ -1,5 +1,8 @@
 @use '../mixins/mixins' as *;
 
+$result-delay: 0.5s;
+$result-won-delay: ($result-delay * 2);
+
 .game {
 	width: 100%;
 	height: 100%;
@@ -12,66 +15,13 @@
 	max-width: rem(482px);
 	padding: 75px 5px;
 	background: url('/images/bg-triangle.svg') no-repeat 50% 50% / 50%;
+	animation: fadeIn 0.5s $result-delay cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
 
-	@media screen and (min-width: 1366px) {
+	@media screen and (min-width: 1024px) {
 		padding: 0;
 		align-items: flex-end;
 		column-gap: 75px;
 		background: url('/images/bg-triangle.svg') no-repeat 50% 65% / 60%;
-	}
-
-	&--results {
-		background: none;
-		max-width: 1000px;
-		padding: 75px 5px 0;
-
-		@media screen and (min-width: 1366px) {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 0;
-			justify-items: flex-start;
-			padding-top: 50px;
-			padding-right: 26px;
-			padding-left: 4px;
-			background: none;
-		}
-
-		.game__elem {
-			@include size(100%, 100%);
-			@include flex(center, flex-start, column);
-			align-self: center;
-			
-			@media screen and (min-width: 1366px) {
-				grid-row: 1 / span 2;
-				flex-direction: column-reverse;
-				justify-content: space-between;
-			}
-			&--picking {
-				grid-column: 3;
-			}
-			&--2 {
-				grid-column: auto;
-			}
-			&--play {
-				justify-content: center;
-				// margin-top: 90px;
-				@media screen and (min-width: 1366px) {
-					grid-column: 2;
-					grid-row: 1 / span 2;
-					flex-direction: column;
-					max-width: unset;
-					margin-top: 32px;
-					margin-left: 10px;
-				}
-			}
-		}
-
-		.game__option {
-			@media screen and (min-width: 1366px) {
-				@include size(rem(295px), rem(295px));
-				max-width: 100%;
-				margin-bottom: 20px;
-			}
-		}
 	}
 
 	&__elem {
@@ -101,8 +51,9 @@
 		max-width: rem(203px);
 		border-radius: 50%;
 		font-size: 5px;
+		animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-		@media screen and (min-width: 1366px) {
+		@media screen and (min-width: 1024px) {
 			@include size(rem(200px), rem(200px));
 			font-size: 7px;
 		}
@@ -121,7 +72,7 @@
 				background: var(--primary-paper);
 				box-shadow: 0 1em 0 hsla(230, 66%, 45%);
 			}
-			@media screen and (min-width: 1366px) {
+			@media screen and (min-width: 1024px) {
 				justify-self: flex-start;
 			}
 		}
@@ -130,7 +81,7 @@
 				background: var(--primary-scissor);
 				box-shadow: 0 1em 0px hsla(28, 75%, 45%);
 			}
-			@media screen and (min-width: 1366px) {
+			@media screen and (min-width: 1024px) {
 				justify-self: flex-end;
 			}
 		}
@@ -139,7 +90,7 @@
 				background: var(--primary-rock);
 				box-shadow: 0 1em 0px hsla(349, 77%, 35%);
 			}
-			@media screen and (min-width: 1366px) {
+			@media screen and (min-width: 1024px) {
 				align-self: flex-end;
 			}
 		}
@@ -154,14 +105,16 @@
 				border-radius: 50%;
 				background: radial-gradient(
 					circle,
-					var(--neutral-dark) 0% 40%,
-					#273252 40% 55%,
-					#212C4C 55% 80%,
-					#263A59 80% 100%,
+					rgba($color: #273252, $alpha: 80%) 0% 40%,
+					rgba($color: #273252, $alpha: 50%) 40% 55%,
+					rgba($color: #212c4c, $alpha: 50%) 55% 80%,
+					rgba($color: #263a59, $alpha: 50%) 80% 100%
 				);
 				z-index: -1;
 				opacity: 0.4;
-				@media screen and (min-width: 1366px) {
+				animation: fadeIn 1s $result-won-delay cubic-bezier(0.175, 0.885, 0.32, 1.275) both,
+					loadingSmaller 1s $result-won-delay cubic-bezier(0.33, 1, 0.68, 1) infinite alternate-reverse;
+				@media screen and (min-width: 1024px) {
 					@include size(250%, 250%);
 				}
 			}
@@ -177,14 +130,19 @@
 		position: relative;
 		z-index: 1;
 		pointer-events: none;
-		@media screen and (min-width: 1366px) {
+		transition: background-color 0.15s linear;
+		@media screen and (min-width: 1024px) {
 			box-shadow: inset 0 7px 0 hsla(217, 16%, 45%, 25%);
+		}
+		&--picked {
+			background-color: #fff;
 		}
 		&--picking {
 			background: rgba(0, 0, 0, 0.1);
 			box-shadow: none;
 		}
 	}
+
 	&__svg {
 		@include size(55%, 55%);
 		position: relative;
@@ -205,6 +163,7 @@
 		letter-spacing: rem(2px);
 		margin-top: 14px;
 		transition: color 0.15s ease-in;
+		animation: fadeIn 0.5s ($result-delay * 3) cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 		&:hover {
 			cursor: pointer;
 			color: hsl(349, 71%, 52%);
@@ -216,12 +175,13 @@
 
 	&__text {
 		text-transform: uppercase;
+		animation: fadeInText 0.5s $result-delay cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 		&--picked {
 			display: block;
 			font-size: rem(15px);
 			letter-spacing: rem(2px);
 			margin-top: rem(31px);
-			@media screen and (min-width: 1366px) {
+			@media screen and (min-width: 1024px) {
 				margin-top: 5px;
 				font-size: rem(24px);
 				letter-spacing: rem(3px);
@@ -229,10 +189,118 @@
 		}
 		&--lg {
 			font-size: rem(57px);
+			animation: fadeInText 0.5s $result-won-delay cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 		}
+	}
+
+	&--results {
+		background: none;
+		max-width: rem(1000px);
+		padding-bottom: 0;
+
+		@media screen and (min-width: 1024px) {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 0;
+			justify-items: flex-start;
+			padding-top: 50px;
+			padding-right: 26px;
+			padding-left: 4px;
+			background: none;
+		}
+
+		.game__elem {
+			@include size(100%, 100%);
+			@include flex(center, flex-start, column);
+			align-self: center;
+
+			@media screen and (min-width: 1024px) {
+				grid-row: 1 / span 2;
+				flex-direction: column-reverse;
+				justify-content: space-between;
+			}
+			&--2 {
+				grid-column: auto;
+			}
+			&--picking {
+				grid-column: 2;
+				animation: loading 1s linear infinite;
+				@media screen and (min-width: 1024px) {
+					grid-column: 3;
+				}
+			}
+			&--play {
+				justify-content: center;
+				// margin-top: 90px;
+				@media screen and (min-width: 1024px) {
+					grid-column: 2;
+					grid-row: 1 / span 2;
+					flex-direction: column;
+					max-width: unset;
+					margin-top: 32px;
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.game__option {
+			@media screen and (min-width: 1024px) {
+				@include size(rem(295px), rem(295px));
+				max-width: 100%;
+				margin-bottom: 20px;
+			}
+		}
+	}
+}
+
+button.game__option:active {
+	transform: translate3d(0, rem(5px), 0);
+	&::before {
+		box-shadow: none;
 	}
 }
 
 button.game__option:hover {
 	cursor: pointer;
+	.game__svg-container {
+		background-color: #fafafa;
+	}
+}
+
+@keyframes loading {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.5);
+	}
+	75% {
+		transform: scale(0.75);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes loadingSmaller {
+	from {
+		transform: scale(0.75);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	} 
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInText {
+	from {
+		font-size: 0;
+	}
 }
