@@ -180,7 +180,7 @@ function createOptionElem(optionId: string, position: number, isButton: boolean)
 	}
 	optionContainer.setAttribute('id', optionId);
 	optionContainer.classList.add('game__option', `game__option--${optionId}`);
-	const svgContainer = document.createElement('div');
+	const svgContainer = document.createElement('span');
 	svgContainer.classList.add('game__svg-container');
 
 	/* 
@@ -211,7 +211,7 @@ function createEmptyOptionElem(): HTMLElement {
 	let optionContainer = null;
 	optionContainer = document.createElement('div');
 	optionContainer.classList.add('game__option');
-	const svgContainer = document.createElement('div');
+	const svgContainer = document.createElement('span');
 	svgContainer.classList.add('game__svg-container', 'game__svg-container--picking');
 	optionContainer.appendChild(svgContainer);
 	li.appendChild(optionContainer);
