@@ -71,6 +71,8 @@ function createResultView(playerOption: HTMLElement, houseOption: HTMLElement, g
 	const result = hasWon(playerPick, housePick) as Result;
 	playerOption.appendChild(createTextElem('you picked'));
 	houseOption.appendChild(createTextElem('the house picked'));
+	playerOption.setAttribute('aria-label', `You picked ${playerPick}`);
+	playerOption.setAttribute('aria-label', `The house picked ${housePick}`);
 	if (result == 'you won') {
 		playerOption.firstElementChild?.classList.add('game__option--win')
 	} else if (result !== 'draw') {
@@ -145,6 +147,7 @@ function updateScoreElem(result: Result): void {
 	}
 	scoreElem.textContent = String(score);
 	scoreElem.classList.add('score__number--changing');
+	scoreElem.setAttribute('aria-label', `Your current score is ${score}`);
 }
 
 // ------------ //
